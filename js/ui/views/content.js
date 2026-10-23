@@ -176,7 +176,7 @@ export async function contentEditView(p) {
     };
     const updatePreview = async () => {
         const v = validateCustom(cc);
-        const r2 = buildRegistry([...state.custom.filter((x) => x.id !== cc.id), { ...cc, enabled: true }]);
+        const r2 = buildRegistry([...state.custom.filter((x) => x.id !== cc.id), { ...cc, enabled: true }], state.packs);
         let sample = null;
         try {
             const d = blankDraft('srd51');

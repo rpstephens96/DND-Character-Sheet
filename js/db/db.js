@@ -1,7 +1,7 @@
 // Minimal promise-based IndexedDB repository with versioned migrations.
 // The Repository interface is the seam for a future encrypted sync adapter (see docs/SYNC.md).
 import { APP_CONFIG } from '../config.js';
-export const STORES = ['characters', 'events', 'snapshots', 'custom', 'campaigns', 'records', 'encounters', 'rolls', 'settings', 'drafts', 'meta'];
+export const STORES = ['characters', 'events', 'snapshots', 'custom', 'campaigns', 'records', 'encounters', 'rolls', 'settings', 'drafts', 'meta', 'packs', 'packText'];
 /** Each entry upgrades the database from (index) to (index + 1). Never edit a released migration; append a new one. */
 const MIGRATIONS = [
     (db) => {
@@ -15,6 +15,8 @@ const MIGRATIONS = [
         rc.createIndex('campaignId', 'campaignId');
     },
     (db) => { const r = db.createObjectStore('rolls', { keyPath: 'id' }); r.createIndex('ts', 'ts'); },
+    // v3: content packs. 'packs' holds manifest + lightweight index/defs; 'packText' holds full text, loaded on demand.
+    (db) => { db.createObjectStore('packs', { keyPath: 'id' }); const t = db.createObjectStore('packText', { keyPath: 'id' }); t.createIndex('packId', 'packId'); },
 ];
 const req = (r) => new Promise((res, rej) => { r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
 export async function openDb() {

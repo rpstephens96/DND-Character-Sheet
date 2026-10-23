@@ -1,19 +1,9 @@
 import { APP_CONFIG } from '../config.js';
 import { blankCharacter, DEFAULT_PANELS } from '../rules/factory.js';
 import { uid, nowIso } from '../rules/events.js';
-const FORBIDDEN = new Set(['__proto__', 'constructor', 'prototype']);
-export const MAX_IMPORT_BYTES = 25 * 1024 * 1024;
-/** JSON.parse that strips prototype-pollution keys at every depth. */
-export function safeParse(text) {
-    if (text.length > MAX_IMPORT_BYTES)
-        throw new Error('File is larger than 25 MB and was not imported.');
-    try {
-        return JSON.parse(text, (k, v) => (FORBIDDEN.has(k) ? undefined : v));
-    }
-    catch (e) {
-        throw new Error(`The file is not valid JSON: ${e.message}`);
-    }
-}
+import { safeParse, MAX_IMPORT_BYTES } from './safe.js';
+export { safeParse, MAX_IMPORT_BYTES };
+import { validatePack } from '../content/pack.js';
 const isObj = (v) => typeof v === 'object' && v !== null && !Array.isArray(v);
 /** Deep-merge defaults with imported data, keeping only keys of the expected type. Arrays are taken as-is if arrays. */
 function conform(defaults, input, path, errors) {
@@ -194,6 +184,13 @@ export async function readExport(text) {
         const good = (list ?? []).filter((x) => isObj(x) && typeof x.id === 'string');
         good.forEach((x, i) => checkStrings(x, `${key}[${i}]`, errors));
         out[key] = good;
+    }
+    if (Array.isArray(src.packFiles)) {
+        out.packFiles = [];
+        src.packFiles.forEach((pf, i) => { const r = validatePack(pf); if (r.ok && r.pack)
+            out.packFiles.push(r.pack);
+        else
+            errors.push(`Content pack ${i + 1}: ${r.errors[0] ?? 'invalid'}`); });
     }
     return { ok: errors.length === 0, errors, warnings, integrity, data: out, kind: String(raw.kind ?? '') };
 }

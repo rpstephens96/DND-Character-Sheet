@@ -5,7 +5,7 @@ import { compute } from '../../rules/calc.js';
 import { uid, nowIso, clone } from '../../rules/events.js';
 import { readExport } from '../../io/importExport.js';
 import { APP_CONFIG } from '../../config.js';
-import { sampleCharacters } from '../../data/samples.js';
+import { sampleCharacters, sampleCampaign } from '../../data/samples.js';
 import { go } from '../router.js';
 import { importReportDialog } from './data.js';
 export function libraryView() {
@@ -67,7 +67,7 @@ async function loadSamples() {
     for (const s of samples)
         for (const sn of s.snapshots)
             await state.repo.put('snapshots', sn);
-    const { campaign, records } = (await import('../../data/samples.js')).sampleCampaign(samples[0].character.id);
+    const { campaign, records } = sampleCampaign(samples[0].character.id);
     await state.repo.tx([{ store: 'campaigns', put: [campaign] }, { store: 'records', put: records }, { store: 'characters', put: [{ ...samples[0].character, campaignId: campaign.id }] }]);
     state.characters = state.characters.map((c) => (c.id === samples[0].character.id ? { ...c, campaignId: campaign.id } : c));
     modal('Samples loaded', h('p', null, `Added ${samples.length} sample characters and a sample campaign. They use SRD content only and can be deleted at any time.`));

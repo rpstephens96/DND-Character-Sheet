@@ -1,14 +1,40 @@
 // Safe Markdown subset rendered directly to DOM nodes (no innerHTML).
-// Supports: # headings, - lists, - [ ] / - [x] checkboxes, **bold**, *italic*, `code`, [[cross-links]].
+// Supports: # headings, - lists, - [ ] / - [x] checkboxes, | tables |, **bold**, *italic*, ***both***, `code`, [[cross-links]].
 import { h } from './dom.js';
 export function renderMarkdown(src, resolveLink, onToggle) {
     const root = h('div', { class: 'md' });
     let list = null;
+    let table = null;
+    let tableHead = false;
     src.split('\n').forEach((line, idx) => {
         const t = line.trimEnd();
+        if (/^\s*\|.*\|\s*$/.test(t)) {
+            list = null;
+            const cells = t.trim().slice(1, -1).split('|').map((c) => c.trim());
+            if (cells.every((c) => /^:?-{2,}:?$/.test(c)))
+                return; // separator row
+            if (!table) {
+                const tbl = h('table', { class: 'md-table' });
+                const wrap = h('div', { class: 'table-wrap' }, tbl);
+                root.appendChild(wrap);
+                const thead = h('thead');
+                tbl.appendChild(thead);
+                table = thead;
+                tableHead = true;
+            }
+            else if (tableHead) {
+                const tb = h('tbody');
+                table.parentNode.appendChild(tb);
+                table = tb;
+                tableHead = false;
+            }
+            table.appendChild(h('tr', null, cells.map((c) => h(tableHead ? 'th' : 'td', null, ...inline(c, resolveLink)))));
+            return;
+        }
+        table = null;
         const task = /^\s*[-*] \[( |x|X)\] (.*)$/.exec(t);
         const item = /^\s*[-*] (.*)$/.exec(t);
-        const head = /^(#{1,3}) (.*)$/.exec(t);
+        const head = /^(#{1,4}) (.*)$/.exec(t);
         if (task || item) {
             if (!list) {
                 list = h('ul');
@@ -38,14 +64,16 @@ export function renderMarkdown(src, resolveLink, onToggle) {
 }
 function inline(text, resolveLink) {
     const out = [];
-    const re = /(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[\[[^\]]+\]\])/g;
+    const re = /(\*\*\*[^*]+\*\*\*|\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[\[[^\]]+\]\])/g;
     let last = 0;
     let m;
     while ((m = re.exec(text))) {
         if (m.index > last)
             out.push(document.createTextNode(text.slice(last, m.index)));
         const tok = m[0];
-        if (tok.startsWith('**'))
+        if (tok.startsWith('***'))
+            out.push(h('strong', null, h('em', null, tok.slice(3, -3))));
+        else if (tok.startsWith('**'))
             out.push(h('strong', null, tok.slice(2, -2)));
         else if (tok.startsWith('[[')) {
             const title = tok.slice(2, -2);

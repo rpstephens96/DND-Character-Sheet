@@ -1,7 +1,7 @@
 import { h, btn, card, field, input, num, select, textarea, modal, toast, sign, confirmDialog, empty, clear, put, fill } from '../dom.js';
 import { state, change, setActive } from '../store.js';
 import { needCharacter, pageHeader, statButton, rollAndShow, classLine } from '../components.js';
-import { byId } from '../../data/registry.js';
+import { byId, forRuleset, preferRuleset, textFor } from '../../data/registry.js';
 import { uid, nowIso } from '../../rules/events.js';
 import { ABILITY_NAMES } from '../../rules/calc.js';
 const ord = (n) => (n === 0 ? 'Cantrip' : `${n}${n === 1 ? 'st' : n === 2 ? 'nd' : n === 3 ? 'rd' : 'th'} level`);
@@ -18,7 +18,9 @@ export function spellsView(p) {
     const sc = c.spellcasting;
     const isMine = (s) => sc.known.includes(s.id) || sc.prepared.includes(s.id) || sc.alwaysPrepared.includes(s.id);
     const drawList = () => {
-        let spells = state.registry.spells.filter((s) => (!f.q || `${s.name} ${s.summary}`.toLowerCase().includes(f.q.toLowerCase())) && (f.level === '' || s.level === Number(f.level)) && (!f.school || s.school === f.school) && (!f.conc || s.concentration) && (!f.ritual || s.ritual));
+        const mine = [...sc.known, ...sc.prepared, ...sc.alwaysPrepared];
+        const allowed = new Set(forRuleset(state.registry.spells, c.ruleset).map((x) => x.id));
+        let spells = preferRuleset(state.registry.spells.filter((x) => allowed.has(x.id) || mine.includes(x.id)), c.ruleset, mine).filter((s) => (!f.q || `${s.name} ${s.summary}`.toLowerCase().includes(f.q.toLowerCase())) && (f.level === '' || s.level === Number(f.level)) && (!f.school || s.school === f.school) && (!f.conc || s.concentration) && (!f.ritual || s.ritual));
         if (f.status === 'mine')
             spells = spells.filter(isMine);
         if (f.status === 'prepared')
@@ -58,7 +60,7 @@ function spellRow(c, s) {
             dr.spellcasting.known.push(s.id); });
     };
     return h('li', { class: `spell${prepared || always ? ' is-prepared' : ''}` }, h('details', null, h('summary', null, h('span', { class: 'spell-name' }, s.name), h('span', { class: 'spell-meta' }, `${ord(s.level)} · ${s.school}`), s.concentration ? h('span', { class: 'badge', title: 'Concentration' }, 'C') : null, s.ritual ? h('span', { class: 'badge', title: 'Ritual' }, 'R') : null, always ? h('span', { class: 'badge badge-ok' }, 'Always') : prepared ? h('span', { class: 'badge badge-ok' }, 'Prepared') : known ? h('span', { class: 'badge' }, 'Known') : null, fav ? h('span', { class: 'badge' }, '★') : null, s.source.origin !== 'srd' ? h('span', { class: 'badge badge-src' }, s.source.label) : null), h('dl', { class: 'deflist' }, ...[['Casting time', s.castingTime], ['Range', s.range], ['Components', s.components + (s.material ? ` (${s.material})` : '')], ['Duration', s.duration], ['Classes', s.classes.join(', ')], ['Source', s.source.label],
-        ...(s.attack ? [['Attack', `${s.attack} spell attack ${prof ? sign(prof.attack.value) : ''}`]] : []), ...(s.save ? [['Save', `${ABILITY_NAMES[s.save]} DC ${prof?.dc.value ?? '—'}`]] : []), ...(s.damage ? [['Damage', `${s.damage} ${s.damageType ?? ''}`]] : [])].flatMap(([k, v]) => [h('dt', null, k), h('dd', null, v)])), h('p', null, s.summary), s.higher ? h('p', { class: 'hint' }, `At higher levels: ${s.higher}`) : null, field('My notes', note), h('div', { class: 'row wrap' }, btn('Cast', () => castDialog(c, s), 'btn btn-primary btn-small'), btn(known ? 'Forget' : 'Learn', () => void change('spell', `${known ? 'Forgot' : 'Learned'} ${s.name}`, (dr) => { dr.spellcasting.known = known ? dr.spellcasting.known.filter((x) => x !== s.id) : [...dr.spellcasting.known, s.id]; if (known)
+        ...(s.attack ? [['Attack', `${s.attack} spell attack ${prof ? sign(prof.attack.value) : ''}`]] : []), ...(s.save ? [['Save', `${ABILITY_NAMES[s.save]} DC ${prof?.dc.value ?? '—'}`]] : []), ...(s.damage ? [['Damage', `${s.damage} ${s.damageType ?? ''}`]] : [])].flatMap(([k, v]) => [h('dt', null, k), h('dd', null, v)])), h('p', null, s.summary), s.higher ? h('p', { class: 'hint' }, `At higher levels: ${s.higher}`) : null, field('My notes', note), h('div', { class: 'row wrap' }, btn('Cast', () => castDialog(c, s), 'btn btn-primary btn-small'), ...textFor(state.registry, 'spell', s.id, c.ruleset).slice(0, 1).map((t) => h('a', { href: `#/compendium/spell/${encodeURIComponent(t.packId)}/${encodeURIComponent(t.id)}`, class: 'btn btn-small btn-ghost' }, 'Full text')), btn(known ? 'Forget' : 'Learn', () => void change('spell', `${known ? 'Forgot' : 'Learned'} ${s.name}`, (dr) => { dr.spellcasting.known = known ? dr.spellcasting.known.filter((x) => x !== s.id) : [...dr.spellcasting.known, s.id]; if (known)
         dr.spellcasting.prepared = dr.spellcasting.prepared.filter((x) => x !== s.id); }), 'btn btn-small'), needsPrep && !always ? btn(prepared ? 'Unprepare' : 'Prepare', () => void togglePrep(), 'btn btn-small') : null, btn(fav ? '★ Unfavourite' : '☆ Favourite', () => void change('spell', `${fav ? 'Unfavourited' : 'Favourited'} ${s.name}`, (dr) => { dr.spellcasting.favourites = fav ? dr.spellcasting.favourites.filter((x) => x !== s.id) : [...dr.spellcasting.favourites, s.id]; }, { silent: true }), 'btn btn-small btn-ghost'), btn('Save note', () => void change('note', `Note on ${s.name}`, (dr) => { dr.spellcasting.notes[s.id] = note.value; }), 'btn btn-small btn-ghost'))));
 }
 export function castDialog(c, s) {

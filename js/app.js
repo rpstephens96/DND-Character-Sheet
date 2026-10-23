@@ -13,6 +13,8 @@ import { inventoryView } from './ui/views/inventory.js';
 import { campaignsView, campaignView, recordView } from './ui/views/campaign.js';
 import { contentView, contentEditView } from './ui/views/content.js';
 import { dataView, settingsView, aboutView, moreView, printView } from './ui/views/data.js';
+import { packsView } from './ui/views/packs.js';
+import { compendiumView, compendiumEntryView } from './ui/views/compendium.js';
 const NAV = [
     { key: 'character', label: 'Character', icon: '📜' }, { key: 'combat', label: 'Combat', icon: '⚔' }, { key: 'spells', label: 'Spells', icon: '✦' },
     { key: 'inventory', label: 'Inventory', icon: '🎒' }, { key: 'campaign', label: 'Campaign', icon: '⚑' }, { key: 'more', label: 'More', icon: '☰' },
@@ -53,6 +55,8 @@ async function start() {
         return;
     }
     applyTheme();
+    if (state.ephemeral)
+        main.before(h('p', { class: 'notice notice-warn ephemeral-banner', role: 'status' }, 'Preview mode: this browser is not allowing the app to save data for this file. Changes will be lost when you close it. Install the full app (see README) to keep characters.'));
     route('/', () => libraryView(), 'character', 'Characters');
     route('/new', () => wizardView(), 'character', 'New character');
     route('/c/:id', (p) => dashboardView(p), 'character', 'Character');
@@ -76,6 +80,10 @@ async function start() {
     route('/data', () => dataView(), 'more', 'Backup');
     route('/settings', () => settingsView(), 'more', 'Settings');
     route('/about', () => aboutView(), 'more', 'About');
+    route('/packs', () => packsView(), 'more', 'Content packs');
+    route('/compendium', (p) => compendiumView(p), 'more', 'Compendium');
+    route('/compendium/:kind', (p) => compendiumView(p), 'more', 'Compendium');
+    route('/compendium/:kind/:packId/:id', (p) => compendiumEntryView(p), 'more', 'Compendium');
     route('/more', () => moreView(), 'more', 'More');
     route('/print/:id', (p) => printView(p), 'character', 'Print');
     let lastPath = '';

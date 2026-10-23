@@ -1,4 +1,5 @@
 import { openDb, requestPersistence } from '../db/db.js';
+import { memoryRepo } from '../db/memory.js';
 import { buildRegistry } from '../data/registry.js';
 import { compute } from '../rules/calc.js';
 import { mutate, undoEvent } from '../rules/events.js';
@@ -18,10 +19,18 @@ export function setSaveState(s, msg) {
     el.textContent = s === 'saving' ? 'Saving…' : s === 'saved' ? 'All changes saved' : `Not saved: ${msg ?? 'error'}`;
 }
 export async function init() {
-    state.repo = await openDb();
+    state.ephemeral = false;
+    try {
+        state.repo = await openDb();
+    }
+    catch {
+        state.repo = memoryRepo();
+        state.ephemeral = true;
+    } // e.g. a browser that blocks storage for local files
     state.settings = { ...DEFAULT_SETTINGS, ...((await state.repo.get('settings', 'settings')) ?? {}) };
     state.custom = await state.repo.all('custom');
-    state.registry = buildRegistry(state.custom);
+    state.packs = await state.repo.all('packs');
+    state.registry = buildRegistry(state.custom, state.packs);
     state.characters = [];
     for (const raw of await state.repo.all('characters')) {
         if ((raw.schemaVersion ?? 1) < 2) { // migrate on load and log
@@ -118,10 +127,12 @@ export async function saveSettings(patch) {
 }
 export async function reloadCustom() {
     state.custom = await state.repo.all('custom');
-    state.registry = buildRegistry(state.custom);
+    state.packs = await state.repo.all('packs');
+    state.registry = buildRegistry(state.custom, state.packs);
     recompute();
     notify();
 }
+export const reloadContent = reloadCustom;
 export function applyTheme() {
     const t = state.settings?.theme ?? 'system';
     const dark = t === 'dark' || (t === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
