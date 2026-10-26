@@ -1,0 +1,23 @@
+[
+ {
+  "index": "darkvision",
+  "name": "Darkvision",
+  "desc": [
+   "You can see in dim light within 60 feet of you as if it were bright light."
+  ]
+ },
+ {
+  "index": "dwarven-resilience",
+  "name": "Dwarven Resilience",
+  "desc": [
+   "You have advantage on saving throws against poison."
+  ]
+ },
+ {
+  "index": "dwarven-toughness",
+  "name": "Dwarven Toughness",
+  "desc": [
+   "Your hit point maximum increases by 1."
+  ]
+ }
+]

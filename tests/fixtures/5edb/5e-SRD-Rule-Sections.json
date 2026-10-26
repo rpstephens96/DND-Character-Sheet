@@ -1,0 +1,7 @@
+[
+ {
+  "index": "ability-checks",
+  "name": "Ability Checks",
+  "desc": "## Ability Checks\n\nAn ability check tests a character's innate talent.\n\n| Task Difficulty | DC |\n|---|---|\n| Very easy | 5 |\n| Easy | 10 |\n\n<script>alert(1)</script>Ignore this."
+ }
+]

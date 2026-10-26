@@ -1,0 +1,38 @@
+[
+ {
+  "key": "srd-2024_acolyte",
+  "name": "Acolyte",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "desc": "You devoted yourself to service in a temple.",
+  "benefits": [
+   {
+    "name": "Ability Scores",
+    "desc": "Intelligence, Wisdom, Charisma",
+    "type": "ability_score"
+   },
+   {
+    "name": "Feat",
+    "desc": "Magic Initiate (Cleric) (see \u201cFeats\u201d)",
+    "type": "feat"
+   },
+   {
+    "name": "Skill Proficiencies",
+    "desc": "Insight and Religion",
+    "type": "skill_proficiency"
+   },
+   {
+    "name": "Tool Proficiency",
+    "desc": "Calligrapher\u2019s Supplies",
+    "type": "tool_proficiency"
+   },
+   {
+    "name": "Equipment",
+    "desc": "Choose A or B: (A) Calligrapher\u2019s Supplies, Book (prayers), 8 GP; or (B) 50 GP",
+    "type": "equipment"
+   }
+  ]
+ }
+]

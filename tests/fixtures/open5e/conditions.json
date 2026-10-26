@@ -1,0 +1,15 @@
+[
+ {
+  "key": "srd-2024_blinded",
+  "name": "Blinded",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "descriptions": [
+   {
+    "desc": "Can\u2019t See. You can\u2019t see and automatically fail any ability check that requires sight."
+   }
+  ]
+ }
+]

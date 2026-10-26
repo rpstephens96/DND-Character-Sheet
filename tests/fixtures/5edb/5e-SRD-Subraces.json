@@ -1,0 +1,29 @@
+[
+ {
+  "index": "hill-dwarf",
+  "name": "Hill Dwarf",
+  "race": {
+   "index": "dwarf",
+   "name": "Dwarf",
+   "url": "/api/2014//dwarf"
+  },
+  "desc": "As a hill dwarf, you have keen senses.",
+  "ability_bonuses": [
+   {
+    "ability_score": {
+     "index": "wis",
+     "name": "WIS",
+     "url": "/api/2014//wis"
+    },
+    "bonus": 1
+   }
+  ],
+  "racial_traits": [
+   {
+    "index": "dwarven-toughness",
+    "name": "Dwarven Toughness",
+    "url": "/api/2014//dwarven-toughness"
+   }
+  ]
+ }
+]

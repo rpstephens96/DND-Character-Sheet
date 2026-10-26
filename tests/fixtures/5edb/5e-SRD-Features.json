@@ -1,0 +1,33 @@
+[
+ {
+  "index": "arcane-recovery",
+  "class": {
+   "index": "wizard",
+   "name": "Wizard",
+   "url": "/api/2014//wizard"
+  },
+  "name": "Arcane Recovery",
+  "level": 1,
+  "desc": [
+   "You have learned to regain some of your magical energy by studying your spellbook."
+  ]
+ },
+ {
+  "index": "sculpt-spells",
+  "class": {
+   "index": "wizard",
+   "name": "Wizard",
+   "url": "/api/2014//wizard"
+  },
+  "subclass": {
+   "index": "evocation",
+   "name": "Evocation",
+   "url": "/api/2014//evocation"
+  },
+  "name": "Sculpt Spells",
+  "level": 2,
+  "desc": [
+   "You can create pockets of relative safety within the effects of your evocation spells."
+  ]
+ }
+]

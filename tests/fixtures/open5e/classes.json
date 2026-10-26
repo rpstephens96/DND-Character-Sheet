@@ -1,0 +1,65 @@
+[
+ {
+  "key": "srd-2024_wizard",
+  "name": "Wizard",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "hit_dice": "D6",
+  "subclass_of": null,
+  "desc": "Wizards are defined by their exhaustive study of magic.",
+  "saving_throws": [
+   {
+    "name": "Intelligence"
+   },
+   {
+    "name": "Wisdom"
+   }
+  ],
+  "features": [
+   {
+    "name": "Arcane Recovery",
+    "desc": "You can regain some of your magical energy by studying your spellbook.",
+    "gained_at": [
+     {
+      "level": 1
+     }
+    ]
+   },
+   {
+    "name": "Scholar",
+    "desc": "While studying magic, you also specialized in another field of study.",
+    "gained_at": [
+     {
+      "level": 2
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "key": "srd-2024_evoker",
+  "name": "Evoker",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "subclass_of": {
+   "name": "Wizard",
+   "key": "srd-2024_wizard"
+  },
+  "desc": "Create Explosive Elemental Effects.",
+  "features": [
+   {
+    "name": "Potent Cantrip",
+    "desc": "Your damaging cantrips affect even creatures that avoid the brunt of the effect.",
+    "gained_at": [
+     {
+      "level": 3
+     }
+    ]
+   }
+  ]
+ }
+]

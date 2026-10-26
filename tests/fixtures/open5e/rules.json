@@ -1,0 +1,11 @@
+[
+ {
+  "key": "srd-2024_d20-tests",
+  "name": "D20 Tests",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "desc": "D20 Tests cover the use of the twenty-sided die."
+ }
+]

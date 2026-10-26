@@ -1,0 +1,19 @@
+# Testing
+
+`npm run check` runs the type-check, lint, build and all tests. The current result is 62 tests, all passing.
+
+| File | Coverage |
+|---|---|
+| `tests/rules.test.mjs` (26) | Ability modifiers, proficiency by level, saves, skills, expertise, JoAT, passives, AC (armour, unarmoured variants, shields), initiative, HP progression, ASI validation, multiclass prerequisites, prepared/known/pact casters, combined slots, resistance/immunity/vulnerability, temp HP, death saves, massive damage, concentration DC, short/long rests (2014 vs 2024), exhaustion, conditions, encumbrance, custom modifiers/resources, overrides, audit/undo conflicts, dice parsing/advantage/crits/manual entry |
+| `tests/io.test.mjs` (6) | Prototype-pollution stripping, script rejection, portrait safety, v1→v2 migration, export/re-import round trip with identical derived values, integrity tamper detection, custom-content validation, a custom class becoming playable |
+| `tests/ui-smoke.test.mjs` (1) | Renders all 34 routes (including Content packs and Compendium with two installed fixture packs) for a martial, a prepared caster and a multiclass pact caster; clicks every button, link, checkbox and radio, and each opened dialog’s primary action; fails on any exception or unhandled rejection |
+| `tests/content.test.mjs` (10) | Both SRD converters against fixture files in each source's format; pack validation (unsafe text, bad manifests, prototype pollution, invalid definitions kept as text); install/replace/disable/remove/export; built-in mechanics preserved; **existing characters' derived values unchanged by packs**; 2014/2024 duplicate preference; backups with packs; mocked downloads incl. pagination and partial failure; the import script; only `net.ts` may fetch |
+| `tests/custom-content.test.mjs` (8) | A complete user-entered class, subclass, species, background and feat: validation; a character built on them at level 1 and 5 (HP, AC, speed, feature bonuses with breakdown sources, per-level and formula resources, subclass spells, ASI pending, half-caster slots and prepared limit); custom feat at an ASI; sheet features with bonuses/formula resource/action/proficiencies/spells, then edit (usage kept, position kept), remove (clean-up, shared proficiency kept) and undo; library features applied to future characters at the right level and never twice; species trait at creation; export/import round trip |
+| `tests/preview.test.mjs` (2) | Single-file preview: self-contained, CSP hashes match, and it starts with no storage available |
+| `tests/ui-flows.test.mjs` (9) | Full 12-step wizard (including validation blocking), damage with confirmed resistance + undo, level-up + snapshot + reversal, spell casting consuming a slot and setting concentration, long rest, compendium (Markdown tables, learning a pack spell, adding a magic item, adding three monsters to an encounter, spellbook full-text links), the class form (copy Fighter, change hit die, add a feature with a bonus, save, build a character on it), the Features screen (validation, add with bonus and formula uses, edit, remove), automatic install of published packs (once; removal respected) |
+
+Expected values in rules tests are worked out by hand from the SRD rules, not taken from the engine’s output.
+
+## Limits
+
+The build environment had no browser, so UI tests run on a minimal DOM shim with an in-memory repository. They prove that views render and handlers run correctly. They do **not** test layout, CSS, real IndexedDB, the service worker, or screen-reader output. The SRD converters are tested against fixture files written to each source's documented format, not against live downloads (the build environment has no internet access); check the report the first time you download real data. Before relying on the app, run a manual check on your phone: install, go offline, create a character, then restore a backup.

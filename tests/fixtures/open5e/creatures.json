@@ -1,0 +1,50 @@
+[
+ {
+  "key": "srd-2024_goblin-warrior",
+  "name": "Goblin Warrior",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "size": {
+   "name": "Small"
+  },
+  "type": {
+   "name": "Fey"
+  },
+  "alignment": "chaotic neutral",
+  "armor_class": 15,
+  "hit_points": 10,
+  "hit_dice": "3d6",
+  "speed": {
+   "walk": 30,
+   "unit": "feet"
+  },
+  "ability_scores": {
+   "strength": 8,
+   "dexterity": 15,
+   "constitution": 10,
+   "intelligence": 10,
+   "wisdom": 8,
+   "charisma": 8
+  },
+  "challenge_rating_decimal": "0.250",
+  "experience_points": 50,
+  "languages": {
+   "as_string": "Common, Goblin"
+  },
+  "traits": [
+   {
+    "name": "Nimble Escape",
+    "desc": "The goblin takes the Disengage or Hide action."
+   }
+  ],
+  "actions": [
+   {
+    "name": "Scimitar",
+    "desc": "Melee Attack Roll: +4, reach 5 ft. Hit: 5 (1d6 + 2) Slashing damage.",
+    "action_type": "ACTION"
+   }
+  ]
+ }
+]

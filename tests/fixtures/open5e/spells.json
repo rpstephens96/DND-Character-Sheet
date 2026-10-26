@@ -1,0 +1,77 @@
+[
+ {
+  "key": "srd-2024_fireball",
+  "name": "Fireball",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "desc": "A bright streak flashes from you to a point you choose within range and then blossoms into an explosion of flame. Each creature in a 20-foot-radius Sphere makes a Dexterity saving throw, taking 8d6 Fire damage on a failed save.",
+  "higher_level": "The damage increases by 1d6 for each spell slot level above 3.",
+  "level": 3,
+  "school": {
+   "name": "Evocation",
+   "key": "evocation"
+  },
+  "classes": [
+   {
+    "name": "Sorcerer",
+    "key": "srd-2024_sorcerer"
+   },
+   {
+    "name": "Wizard",
+    "key": "srd-2024_wizard"
+   }
+  ],
+  "casting_time": "action",
+  "range_text": "150 feet",
+  "verbal": true,
+  "somatic": true,
+  "material": true,
+  "material_specified": "a ball of bat guano and sulfur",
+  "ritual": false,
+  "duration": "instantaneous",
+  "concentration": false,
+  "saving_throw_ability": "dexterity",
+  "attack_roll": false,
+  "damage_roll": "8d6",
+  "damage_types": [
+   "fire"
+  ]
+ },
+ {
+  "key": "srd-2024_light",
+  "name": "Light",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "desc": "You touch one Large or smaller object.",
+  "level": 0,
+  "school": {
+   "name": "Evocation"
+  },
+  "classes": [
+   {
+    "name": "Bard"
+   },
+   {
+    "name": "Cleric"
+   },
+   {
+    "name": "Sorcerer"
+   },
+   {
+    "name": "Wizard"
+   }
+  ],
+  "casting_time": "action",
+  "range_text": "Touch",
+  "verbal": true,
+  "somatic": false,
+  "material": true,
+  "ritual": false,
+  "duration": "1 hour",
+  "concentration": false
+ }
+]

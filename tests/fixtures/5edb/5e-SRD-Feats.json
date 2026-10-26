@@ -1,0 +1,19 @@
+[
+ {
+  "index": "grappler",
+  "name": "Grappler",
+  "prerequisites": [
+   {
+    "ability_score": {
+     "index": "str",
+     "name": "STR",
+     "url": "/api/2014//str"
+    },
+    "minimum_score": 13
+   }
+  ],
+  "desc": [
+   "You've developed the skills necessary to hold your own in close-quarters grappling."
+  ]
+ }
+]

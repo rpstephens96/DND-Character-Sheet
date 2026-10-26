@@ -1,0 +1,45 @@
+[
+ {
+  "index": "wizard",
+  "name": "Wizard",
+  "hit_die": 6,
+  "proficiency_choices": [
+   {
+    "desc": "Choose two from Arcana, History, Insight, Investigation, Medicine, and Religion",
+    "choose": 2
+   }
+  ],
+  "proficiencies": [
+   {
+    "index": "daggers",
+    "name": "Daggers",
+    "url": "/api/2014//daggers"
+   },
+   {
+    "index": "quarterstaffs",
+    "name": "Quarterstaffs",
+    "url": "/api/2014//quarterstaffs"
+   }
+  ],
+  "saving_throws": [
+   {
+    "index": "int",
+    "name": "INT",
+    "url": "/api/2014//int"
+   },
+   {
+    "index": "wis",
+    "name": "WIS",
+    "url": "/api/2014//wis"
+   }
+  ],
+  "spellcasting": {
+   "level": 1,
+   "spellcasting_ability": {
+    "index": "int",
+    "name": "INT",
+    "url": "/api/2014//int"
+   }
+  }
+ }
+]

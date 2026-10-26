@@ -1,0 +1,29 @@
+[
+ {
+  "key": "srd-2024_cloak-of-protection",
+  "name": "Cloak of Protection",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "desc": "You gain a +1 bonus to Armor Class and saving throws while you wear this cloak.",
+  "category": {
+   "name": "Wondrous Item"
+  },
+  "rarity": {
+   "name": "Uncommon"
+  },
+  "requires_attunement": true,
+  "is_magic_item": true
+ },
+ {
+  "key": "srd-2024_rope",
+  "name": "Rope",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "desc": "Plain rope.",
+  "is_magic_item": false
+ }
+]

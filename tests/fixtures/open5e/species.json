@@ -1,0 +1,30 @@
+[
+ {
+  "key": "srd-2024_dwarf",
+  "name": "Dwarf",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "desc": "Dwarves were raised from the earth.",
+  "is_subspecies": false,
+  "traits": [
+   {
+    "name": "Size",
+    "desc": "Medium (about 4\u20135 feet tall)"
+   },
+   {
+    "name": "Speed",
+    "desc": "30 feet"
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You have Darkvision with a range of 120 feet."
+   },
+   {
+    "name": "Dwarven Resilience",
+    "desc": "You have Resistance to Poison damage."
+   }
+  ]
+ }
+]

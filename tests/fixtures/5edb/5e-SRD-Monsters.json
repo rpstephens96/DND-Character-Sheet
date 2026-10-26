@@ -1,0 +1,138 @@
+[
+ {
+  "index": "goblin",
+  "name": "Goblin",
+  "size": "Small",
+  "type": "humanoid",
+  "subtype": "goblinoid",
+  "alignment": "neutral evil",
+  "armor_class": [
+   {
+    "type": "armor",
+    "value": 15
+   }
+  ],
+  "hit_points": 7,
+  "hit_dice": "2d6",
+  "hit_points_roll": "2d6",
+  "speed": {
+   "walk": "30 ft."
+  },
+  "strength": 8,
+  "dexterity": 14,
+  "constitution": 10,
+  "intelligence": 10,
+  "wisdom": 8,
+  "charisma": 8,
+  "proficiencies": [
+   {
+    "value": 6,
+    "proficiency": {
+     "index": "skill-stealth",
+     "name": "Skill: Stealth",
+     "url": "/api/2014//skill-stealth"
+    }
+   }
+  ],
+  "damage_vulnerabilities": [],
+  "damage_resistances": [],
+  "damage_immunities": [],
+  "condition_immunities": [],
+  "senses": {
+   "darkvision": "60 ft.",
+   "passive_perception": 9
+  },
+  "languages": "Common, Goblin",
+  "challenge_rating": 0.25,
+  "proficiency_bonus": 2,
+  "xp": 50,
+  "special_abilities": [
+   {
+    "name": "Nimble Escape",
+    "desc": "The goblin can take the Disengage or Hide action as a bonus action on each of its turns."
+   }
+  ],
+  "actions": [
+   {
+    "name": "Scimitar",
+    "desc": "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) slashing damage.",
+    "attack_bonus": 4,
+    "damage": [
+     {
+      "damage_type": {
+       "index": "slashing",
+       "name": "Slashing",
+       "url": "/api/2014//slashing"
+      },
+      "damage_dice": "1d6+2"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "index": "aboleth",
+  "name": "Aboleth",
+  "size": "Large",
+  "type": "aberration",
+  "alignment": "lawful evil",
+  "armor_class": [
+   {
+    "type": "natural",
+    "value": 17
+   }
+  ],
+  "hit_points": 135,
+  "hit_dice": "18d10",
+  "hit_points_roll": "18d10+36",
+  "speed": {
+   "walk": "10 ft.",
+   "swim": "40 ft."
+  },
+  "strength": 21,
+  "dexterity": 9,
+  "constitution": 15,
+  "intelligence": 18,
+  "wisdom": 15,
+  "charisma": 18,
+  "proficiencies": [
+   {
+    "value": 6,
+    "proficiency": {
+     "index": "saving-throw-con",
+     "name": "Saving Throw: CON",
+     "url": "/api/2014//saving-throw-con"
+    }
+   }
+  ],
+  "damage_vulnerabilities": [],
+  "damage_resistances": [],
+  "damage_immunities": [],
+  "condition_immunities": [],
+  "senses": {
+   "darkvision": "120 ft.",
+   "passive_perception": 20
+  },
+  "languages": "Deep Speech, telepathy 120 ft.",
+  "challenge_rating": 10,
+  "xp": 5900,
+  "special_abilities": [
+   {
+    "name": "Amphibious",
+    "desc": "The aboleth can breathe air and water."
+   }
+  ],
+  "actions": [
+   {
+    "name": "Tentacle",
+    "desc": "Melee Weapon Attack: +9 to hit."
+   }
+  ],
+  "legendary_actions": [
+   {
+    "name": "Detect",
+    "desc": "The aboleth makes a Wisdom (Perception) check."
+   }
+  ]
+ }
+]

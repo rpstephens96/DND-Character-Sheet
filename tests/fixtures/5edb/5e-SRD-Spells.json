@@ -1,0 +1,176 @@
+[
+ {
+  "index": "fireball",
+  "name": "Fireball",
+  "desc": [
+   "A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one."
+  ],
+  "higher_level": [
+   "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd."
+  ],
+  "range": "150 feet",
+  "components": [
+   "V",
+   "S",
+   "M"
+  ],
+  "material": "A tiny ball of bat guano and sulfur.",
+  "ritual": false,
+  "duration": "Instantaneous",
+  "concentration": false,
+  "casting_time": "1 action",
+  "level": 3,
+  "damage": {
+   "damage_type": {
+    "index": "fire",
+    "name": "Fire",
+    "url": "/api/2014//fire"
+   },
+   "damage_at_slot_level": {
+    "3": "8d6",
+    "4": "9d6"
+   }
+  },
+  "dc": {
+   "dc_type": {
+    "index": "dex",
+    "name": "DEX",
+    "url": "/api/2014//dex"
+   },
+   "dc_success": "half"
+  },
+  "area_of_effect": {
+   "type": "sphere",
+   "size": 20
+  },
+  "school": {
+   "index": "evocation",
+   "name": "Evocation",
+   "url": "/api/2014//evocation"
+  },
+  "classes": [
+   {
+    "index": "sorcerer",
+    "name": "Sorcerer",
+    "url": "/api/2014//sorcerer"
+   },
+   {
+    "index": "wizard",
+    "name": "Wizard",
+    "url": "/api/2014//wizard"
+   }
+  ],
+  "subclasses": [
+   {
+    "index": "lore",
+    "name": "Lore",
+    "url": "/api/2014//lore"
+   },
+   {
+    "index": "fiend",
+    "name": "Fiend",
+    "url": "/api/2014//fiend"
+   }
+  ]
+ },
+ {
+  "index": "web",
+  "name": "Web",
+  "desc": [
+   "You conjure a mass of thick, sticky webbing at a point of your choice within range.",
+   "| Size | Effect |",
+   "|---|---|",
+   "| 20-foot cube | Difficult terrain |"
+  ],
+  "range": "60 feet",
+  "components": [
+   "V",
+   "S",
+   "M"
+  ],
+  "material": "A bit of spiderweb.",
+  "ritual": false,
+  "duration": "Up to 1 hour",
+  "concentration": true,
+  "casting_time": "1 action",
+  "level": 2,
+  "dc": {
+   "dc_type": {
+    "index": "dex",
+    "name": "DEX",
+    "url": "/api/2014//dex"
+   },
+   "dc_success": "none"
+  },
+  "school": {
+   "index": "conjuration",
+   "name": "Conjuration",
+   "url": "/api/2014//conjuration"
+  },
+  "classes": [
+   {
+    "index": "sorcerer",
+    "name": "Sorcerer",
+    "url": "/api/2014//sorcerer"
+   },
+   {
+    "index": "wizard",
+    "name": "Wizard",
+    "url": "/api/2014//wizard"
+   }
+  ],
+  "subclasses": []
+ },
+ {
+  "index": "chill-touch",
+  "name": "Chill Touch",
+  "desc": [
+   "You create a ghostly, skeletal hand in the space of a creature within range."
+  ],
+  "range": "120 feet",
+  "components": [
+   "V",
+   "S"
+  ],
+  "ritual": false,
+  "duration": "1 round",
+  "concentration": false,
+  "casting_time": "1 action",
+  "level": 0,
+  "attack_type": "ranged",
+  "damage": {
+   "damage_type": {
+    "index": "necrotic",
+    "name": "Necrotic",
+    "url": "/api/2014//necrotic"
+   },
+   "damage_at_character_level": {
+    "1": "1d8",
+    "5": "2d8"
+   }
+  },
+  "school": {
+   "index": "necromancy",
+   "name": "Necromancy",
+   "url": "/api/2014//necromancy"
+  },
+  "classes": [
+   {
+    "index": "sorcerer",
+    "name": "Sorcerer",
+    "url": "/api/2014//sorcerer"
+   },
+   {
+    "index": "warlock",
+    "name": "Warlock",
+    "url": "/api/2014//warlock"
+   },
+   {
+    "index": "wizard",
+    "name": "Wizard",
+    "url": "/api/2014//wizard"
+   }
+  ],
+  "subclasses": []
+ }
+]

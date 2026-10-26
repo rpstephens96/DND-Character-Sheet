@@ -1,0 +1,24 @@
+[
+ {
+  "index": "acolyte",
+  "name": "Acolyte",
+  "starting_proficiencies": [
+   {
+    "index": "skill-insight",
+    "name": "Skill: Insight",
+    "url": "/api/2014//skill-insight"
+   },
+   {
+    "index": "skill-religion",
+    "name": "Skill: Religion",
+    "url": "/api/2014//skill-religion"
+   }
+  ],
+  "feature": {
+   "name": "Shelter of the Faithful",
+   "desc": [
+    "As an acolyte, you command the respect of those who share your faith."
+   ]
+  }
+ }
+]

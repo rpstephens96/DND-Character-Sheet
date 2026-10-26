@@ -1,0 +1,128 @@
+[
+ {
+  "index": "crossbow-light",
+  "name": "Crossbow, light",
+  "equipment_category": {
+   "index": "weapon",
+   "name": "Weapon",
+   "url": "/api/2014//weapon"
+  },
+  "weapon_category": "Simple",
+  "weapon_range": "Ranged",
+  "category_range": "Simple Ranged",
+  "cost": {
+   "quantity": 25,
+   "unit": "gp"
+  },
+  "damage": {
+   "damage_dice": "1d8",
+   "damage_type": {
+    "index": "piercing",
+    "name": "Piercing",
+    "url": "/api/2014//piercing"
+   }
+  },
+  "range": {
+   "normal": 80,
+   "long": 320
+  },
+  "weight": 5,
+  "properties": [
+   {
+    "index": "ammunition",
+    "name": "Ammunition",
+    "url": "/api/2014//ammunition"
+   },
+   {
+    "index": "loading",
+    "name": "Loading",
+    "url": "/api/2014//loading"
+   },
+   {
+    "index": "two-handed",
+    "name": "Two-Handed",
+    "url": "/api/2014//two-handed"
+   }
+  ]
+ },
+ {
+  "index": "padded-armor",
+  "name": "Padded Armor",
+  "equipment_category": {
+   "index": "armor",
+   "name": "Armor",
+   "url": "/api/2014//armor"
+  },
+  "armor_category": "Light",
+  "armor_class": {
+   "base": 11,
+   "dex_bonus": true,
+   "max_bonus": null
+  },
+  "str_minimum": 0,
+  "stealth_disadvantage": true,
+  "weight": 8,
+  "cost": {
+   "quantity": 5,
+   "unit": "gp"
+  }
+ },
+ {
+  "index": "backpack",
+  "name": "Backpack",
+  "equipment_category": {
+   "index": "adventuring-gear",
+   "name": "Adventuring Gear",
+   "url": "/api/2014//adventuring-gear"
+  },
+  "gear_category": {
+   "index": "standard-gear",
+   "name": "Standard Gear",
+   "url": "/api/2014//standard-gear"
+  },
+  "cost": {
+   "quantity": 2,
+   "unit": "gp"
+  },
+  "weight": 5,
+  "desc": [
+   "A backpack can hold one cubic foot or 30 pounds of gear."
+  ]
+ },
+ {
+  "index": "explorers-pack",
+  "name": "Explorer's Pack",
+  "equipment_category": {
+   "index": "adventuring-gear",
+   "name": "Adventuring Gear",
+   "url": "/api/2014//adventuring-gear"
+  },
+  "gear_category": {
+   "index": "equipment-packs",
+   "name": "Equipment Packs",
+   "url": "/api/2014//equipment-packs"
+  },
+  "cost": {
+   "quantity": 10,
+   "unit": "gp"
+  },
+  "contents": [
+   {
+    "item": {
+     "index": "backpack",
+     "name": "Backpack",
+     "url": "/api/2014//backpack"
+    },
+    "quantity": 1
+   },
+   {
+    "item": {
+     "index": "torch",
+     "name": "Torch",
+     "url": "/api/2014//torch"
+    },
+    "quantity": 10
+   }
+  ]
+ }
+]

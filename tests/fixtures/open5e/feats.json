@@ -1,0 +1,17 @@
+[
+ {
+  "key": "srd-2024_alert",
+  "name": "Alert",
+  "document": {
+   "name": "System Reference Document 5.2",
+   "key": "srd-2024"
+  },
+  "desc": "You gain the following benefits.",
+  "type": "Origin",
+  "benefits": [
+   {
+    "desc": "Initiative Proficiency. When you roll Initiative, you can add your Proficiency Bonus to the roll."
+   }
+  ]
+ }
+]
