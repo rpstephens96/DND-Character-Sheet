@@ -1,0 +1,22 @@
+{
+  "name": "adventurers-ledger",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Local-first, offline D&D 5E character sheet, builder, combat assistant and campaign ledger (PWA).",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p . --noEmit",
+    "lint": "node scripts/lint.mjs",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "check": "npm run typecheck && npm run lint && npm run build && npm test",
+    "serve": "npx --yes http-server app -p 8080 -c-1",
+    "content:srd51": "node scripts/build.mjs && node scripts/import-content.mjs srd51",
+    "content:srd521": "node scripts/build.mjs && node scripts/import-content.mjs srd521",
+    "preview": "node scripts/build.mjs && echo Open dist/ledger-preview.html"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2"
+  },
+  "license": "SEE LICENSE IN docs/LICENSING.md"
+}
